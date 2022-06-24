@@ -8,7 +8,7 @@ import {
   Req,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { UserTokens } from '@prisma/client';
+// import { UserTokens } from '@prisma/client';
 import { Request } from 'express';
 import { AuthService } from './auth.service';
 import { LoginCredentialsDto } from './dto/login-credentials.dto';
@@ -74,7 +74,7 @@ export class AuthController {
   @Post('logoutAll')
   @HttpCode(HttpStatus.OK)
   async logoutAll(@Req() request: Request): Promise<void> {
-    const { userId } = request.user as { userId: string };
+    const { userId } = request.body.user as { userId: string };
 
     return this.authService.logoutAll(userId);
   }
@@ -83,9 +83,8 @@ export class AuthController {
   @ApiOperation({ summary: 'Returns all user active tokens' })
   @ApiBearerAuth()
   @Get('tokens')
-  async findAllTokens(@Req() request: Request): Promise<UserTokens[]> {
-    const { userId } = request.user as { userId: string };
-
+  async findAllTokens(@Req() request: Request): Promise<any[]> {
+    const { userId } = request.body.user as { userId: string };
     return this.authService.findAllTokens(userId);
   }
 }

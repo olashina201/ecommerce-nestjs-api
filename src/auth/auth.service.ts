@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserTokens } from '@prisma/client';
+// import { UserTokens } from '@prisma/client';
 import { compare } from 'bcrypt';
 import { accessJwtConfig, refreshJwtConfig } from 'src/config/jwt.config';
 import { User } from 'src/user/entities/user.entity';
@@ -94,7 +94,7 @@ export class AuthService {
   }
 
   /** Returns all user's active tokens */
-  async findAllTokens(userId: string): Promise<UserTokens[]> {
+  async findAllTokens(userId: string): Promise<any[]> {
     const tokens = await this.prismaService.userTokens.findMany({
       where: { userId },
     });

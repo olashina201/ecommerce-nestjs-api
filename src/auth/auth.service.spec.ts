@@ -4,7 +4,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserTokens } from '@prisma/client';
 import { isDate, isUUID } from 'class-validator';
 import { accessJwtConfig, refreshJwtConfig } from 'src/config/jwt.config';
-import { UserService } from 'src/models/user/user.service';
+import { UserService } from 'src/user/user.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { AuthService } from './auth.service';
 import { InvalidEmailOrPasswordException } from './exceptions/invalid-email-or-password.exception.';

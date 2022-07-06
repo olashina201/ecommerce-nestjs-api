@@ -9,10 +9,8 @@ import {
   Patch,
   Post,
   Query,
-  Req,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { Request } from 'express';
 import { Public } from 'src/auth/public.decorator';
 import { IsAdmin } from 'src/common/decorators/is-admin.decorator';
 import { CreateUserDto } from './dto/create-user.dto';

@@ -36,11 +36,9 @@ export class PurchaseController {
   @ApiBearerAuth()
   @Post()
   async create(
-    @Req() request: Request,
+    @Query() userId: string,
     @Body() createPurchaseDto: CreatePurchaseDto,
   ): Promise<Purchase> {
-    const { userId } = request.user as { userId: string };
-
     return this.purchaseService.create(userId, createPurchaseDto);
   }
 
@@ -67,10 +65,9 @@ export class PurchaseController {
   @ApiBearerAuth()
   @Get()
   async findAllMine(
-    @Req() request: Request,
+    @Query() userId: string,
     @Query() findPurchasesDto: FindPurchasesDto,
   ): Promise<Purchase[]> {
-    const { userId } = request.user as { userId: string };
     findPurchasesDto.userId = userId;
 
     return this.purchaseService.findAll(findPurchasesDto);
@@ -83,14 +80,10 @@ export class PurchaseController {
   @ApiBearerAuth()
   @Get(':id')
   async findOne(
-    @Req() request: Request,
+    @Query('userId') userId: string,
+    @Query('userRole') userRole: string,
     @Param('id') purchaseId: string,
   ): Promise<Purchase> {
-    const { userId, userRole } = request.user as {
-      userId: string;
-      userRole: string;
-    };
-
     return this.purchaseService.findOne(purchaseId, userId, userRole);
   }
 
@@ -99,12 +92,10 @@ export class PurchaseController {
   @ApiBearerAuth()
   @Patch('/review/:id')
   async review(
-    @Req() request: Request,
-    @Param('id') purchaseId: string,
+    @Query('id') userId: string,
+    @Query('purchaseId') purchaseId: string,
     @Body() reviewPurchaseDto: ReviewPurchaseDto,
   ): Promise<Purchase> {
-    const { userId } = request.user as { userId: string };
-
     return this.purchaseService.review(userId, purchaseId, reviewPurchaseDto);
   }
 

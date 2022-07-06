@@ -1,7 +1,7 @@
 import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
 import { diskStorage } from 'multer';
 import path from 'path';
-import { FileTypeError } from 'src/models/product/exceptions/file-type.exception';
+import { FileTypeError } from 'src/product/exceptions/file-type.exception';
 
 /** Constant containing a Regular Expression
  * with the valid image upload types

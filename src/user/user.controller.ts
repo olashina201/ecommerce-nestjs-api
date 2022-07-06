@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Body,
   Controller,
@@ -7,6 +8,7 @@ import {
   HttpStatus,
   Patch,
   Post,
+  Query,
   Req,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
@@ -42,8 +44,7 @@ export class UserController {
   @ApiOperation({ summary: "Gets user's own profile" })
   @ApiBearerAuth()
   @Get()
-  async findById(@Req() request: Request): Promise<UserWithoutPassword> {
-    const userId = request.user['userId'];
+  async findById(@Query('id') userId: string,): Promise<UserWithoutPassword> {
 
     return this.userService.findById(userId);
   }
@@ -53,10 +54,9 @@ export class UserController {
   @ApiBearerAuth()
   @Patch()
   update(
-    @Req() request: Request,
+    @Query('id') userId: string,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<UserWithoutPassword> {
-    const userId = request.user['userId'];
 
     return this.userService.update(userId, updateUserDto);
   }
@@ -77,11 +77,9 @@ export class UserController {
   @Delete()
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(
-    @Req() request: Request,
+    @Query('id') userId: string,
     @Body() deleteUserDto: DeleteUserDto,
   ): Promise<void> {
-    const userId = request.user['userId'];
-
     return this.userService.remove(userId, deleteUserDto);
   }
 }

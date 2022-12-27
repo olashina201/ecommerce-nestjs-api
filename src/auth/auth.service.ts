@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 // import { UserTokens } from '@prisma/client';
@@ -43,14 +44,13 @@ export class AuthService {
 
     const accessToken = await this.generateAccessToken(payload);
 
-    const refreshToken = await this.createRefreshToken(
-      { sub: payload.sub },
-      browserInfo,
-    );
+    // const refreshToken = await this.createRefreshToken(
+    //   { sub: payload.sub },
+    //   browserInfo,
+    // );
 
     return {
       accessToken,
-      refreshToken,
     };
   }
 
@@ -79,7 +79,7 @@ export class AuthService {
 
     return {
       accessToken,
-      refreshToken: newRefreshToken,
+      // refreshToken: newRefreshToken,
     };
   }
 

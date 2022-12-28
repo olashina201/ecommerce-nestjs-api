@@ -33,8 +33,9 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   /** Creates a new product, only for admins */
-  @ApiOperation({ summary: 'Admin creates a new product' })
-  @IsAdmin()
+  // @ApiOperation({ summary: 'Admin creates a new product' })
+  // @IsAdmin()
+  @Public()
   @Post()
   create(@Body() createProductDto: CreateProductDto): Promise<Product> {
     return this.productService.create(createProductDto);

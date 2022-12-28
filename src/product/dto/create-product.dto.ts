@@ -15,12 +15,7 @@ export class CreateProductDto extends OmitType(Product, [
   'id',
   'createdAt',
   'urlName',
-  'picture',
 ] as const) {
-  /**
-   * Product name
-   * @example "Brand black wheelchair"
-   */
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -49,6 +44,10 @@ export class CreateProductDto extends OmitType(Product, [
   @IsInt()
   @IsOptional()
   stock?: number;
+
+  @IsString()
+  @IsOptional()
+  picture?: string;
 
   /**
    * Product description

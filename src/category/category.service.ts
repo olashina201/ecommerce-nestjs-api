@@ -11,28 +11,20 @@ import { Category } from './entities/category.entity';
  */
 @Injectable()
 export class CategoryService {
-  /** Responsible for managing categories in the database.
-   * CRUD endpoints are available for categories.
-   *
-   * Instantiates the class and the PrismaService dependency
-   */
   constructor(private readonly prisma: PrismaService) {}
 
-  /** Creates a new category */
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
-    const name = this.capitalizeOnlyFirstLetter(createCategoryDto.name);
+    // const name = this.capitalizeOnlyFirstLetter(createCategoryDto.name);
 
     const category = await this.prisma.category.create({
-      data: { ...createCategoryDto, name },
+      data: { ...createCategoryDto },
     });
+
+    console.log(category);
 
     return category;
   }
 
-  /** Returns all categories with pagination and can search by name
-   * Default is starting on page 1 showing 10 results per page
-   * and ordering by name
-   */
   async findAll({
     categoryName = '',
     page = 1,

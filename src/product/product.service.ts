@@ -13,11 +13,6 @@ import { File } from './types/file';
  */
 @Injectable()
 export class ProductService {
-  /** Responsible for managing products in the database.
-   * CRUD endpoints are available for products.
-   *
-   * Instantiates the class and the PrismaService dependency
-   */
   constructor(private readonly prisma: PrismaService) {}
 
   /** Creates a new product */

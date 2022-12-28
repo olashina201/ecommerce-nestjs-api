@@ -24,15 +24,12 @@ import { Category } from './entities/category.entity';
 @ApiTags('category')
 @Controller('category')
 export class CategoryController {
-  /** Exposes category CRUD endpoints
-   *
-   * Instantiate class and CategoryService dependency
-   */
   constructor(private readonly categoryService: CategoryService) {}
 
   /** Creates a new category, only for admins */
   @ApiOperation({ summary: 'Admin creates a new category' })
-  @IsAdmin()
+  // @IsAdmin()
+  @Public()
   @Post()
   async create(
     @Body() createCategoryDto: CreateCategoryDto,

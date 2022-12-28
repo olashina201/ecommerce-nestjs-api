@@ -6,15 +6,11 @@ import { IS_PUBLIC_KEY } from './public.decorator';
 
 /** Uses the passport library AuthGuard to check
  * if the route needs authentication
- *
- * For more on NestJs Guards: https://docs.nestjs.com/guards
  */
 @Injectable()
 export class AccessJwtAuthGuard extends AuthGuard('access-jwt') {
   /** Uses the passport library AuthGuard to check
    * if the route needs authentication
-   *
-   * For more on NestJs Guards: https://docs.nestjs.com/guards
    *
    * Instantiates the class and the Reflector dependency
    */

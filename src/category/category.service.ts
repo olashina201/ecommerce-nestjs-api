@@ -13,8 +13,10 @@ import { Category } from './entities/category.entity';
 export class CategoryService {
   constructor(private readonly prisma: PrismaService) {}
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
+    console.log(createCategoryDto);
+    const { name, image } = createCategoryDto;
     const category = await this.prisma.category.create({
-      data: { ...createCategoryDto },
+      data: { name, image },
     });
     console.log(category);
     return category;

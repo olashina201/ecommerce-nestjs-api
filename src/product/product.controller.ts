@@ -61,14 +61,6 @@ export class ProductController {
     return this.productService.findOneById(id);
   }
 
-  /** Find product by Url Name */
-  @ApiOperation({ summary: 'Gets product by urlName' })
-  @Public()
-  @Get(':urlName')
-  findOneByUrlName(@Param('urlName') urlName: string): Promise<Product> {
-    return this.productService.findOneByUrlName(urlName);
-  }
-
   /**
    * Admin uploads a new picture for the product.
    * Needs to be type jpeg, jpg or png and maximum 3MB.
@@ -88,15 +80,15 @@ export class ProductController {
   }
 
   /** Updates product information, only for admins */
-  @ApiOperation({ summary: 'Admin updates product' })
-  @IsAdmin()
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateProductDto: UpdateProductDto,
-  ): Promise<Product> {
-    return this.productService.update(id, updateProductDto);
-  }
+  // @ApiOperation({ summary: 'Admin updates product' })
+  // @IsAdmin()
+  // @Patch(':id')
+  // update(
+  //   @Param('id') id: string,
+  //   @Body() updateProductDto: UpdateProductDto,
+  // ): Promise<Product> {
+  //   return this.productService.update(id, updateProductDto);
+  // }
 
   /** Deletes product from database, only for admins */
   @ApiOperation({ summary: 'Admin deletes product' })

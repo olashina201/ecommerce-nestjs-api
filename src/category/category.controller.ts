@@ -28,8 +28,7 @@ export class CategoryController {
 
   /** Creates a new category, only for admins */
   @ApiOperation({ summary: 'Admin creates a new category' })
-  // @IsAdmin()
-  @Public()
+  @IsAdmin()
   @Post()
   async create(
     @Body() createCategoryDto: CreateCategoryDto,

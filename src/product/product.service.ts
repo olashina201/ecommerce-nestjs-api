@@ -17,6 +17,7 @@ export class ProductService {
 
   /** Creates a new product */
   async create(createProductDto: CreateProductDto): Promise<Product> {
+    console.log(createProductDto);
     const urlName = this.formatUrlName(createProductDto.name);
 
     const categories = this.connectCategoriesById(createProductDto.categories);
@@ -137,9 +138,7 @@ export class ProductService {
   /**
    * Format the categories IDs array into the prisma query way
    */
-  private connectCategoriesById(
-    categories: string[],
-  ) {
+  private connectCategoriesById(categories: string[]) {
     let categoriesConnection = { connect: [] };
 
     if (categories) {

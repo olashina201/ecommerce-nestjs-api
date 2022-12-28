@@ -18,6 +18,7 @@ import { DeleteUserDto } from './dto/delete-user.dto';
 import { UpdateUserRoleDto } from './dto/update-user-role.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserWithoutPassword } from './entities/user-without-password.entity';
+import { User } from './entities/user.entity';
 import { UserService } from './user.service';
 
 /** Exposes user CRUD endpoints */
@@ -34,7 +35,7 @@ export class UserController {
   @ApiOperation({ summary: 'Creates a new user' })
   @Public()
   @Post()
-  create(@Body() createUserDto: CreateUserDto): Promise<void> {
+  create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.userService.create(createUserDto);
   }
 
@@ -42,8 +43,7 @@ export class UserController {
   @ApiOperation({ summary: "Gets user's own profile" })
   @ApiBearerAuth()
   @Get()
-  async findById(@Query('id') userId: string,): Promise<UserWithoutPassword> {
-
+  async findById(@Query('id') userId: string): Promise<UserWithoutPassword> {
     return this.userService.findById(userId);
   }
 
@@ -55,7 +55,6 @@ export class UserController {
     @Query('id') userId: string,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<UserWithoutPassword> {
-
     return this.userService.update(userId, updateUserDto);
   }
 

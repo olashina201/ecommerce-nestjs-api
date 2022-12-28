@@ -13,7 +13,7 @@ model User {
   password  String
   name      String?
   address   String?
-  role      Role     @default(USER)
+  role      Role     @default(ADMIN)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 
@@ -37,7 +37,6 @@ model UserTokens {
 model Product {
   id                 String     @id @default(uuid())
   name               String     @unique
-  urlName            String     @unique
   picture            String?
   basePrice          Decimal
   discountPercentage Int        @default(0)

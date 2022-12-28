@@ -24,22 +24,21 @@ export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
   /** Creates a new user */
-  async create(createUserDto: CreateUserDto): Promise<void> {
+  async create(createUserDto: CreateUserDto): Promise<User> {
     const hashedPassword = await hash(
       createUserDto.password,
       hashConfig.saltRounds,
     );
 
-    const lowerCaseEmail = createUserDto.email.toLowerCase();
-
-    await this.prisma.user.create({
+    const user = await this.prisma.user.create({
       data: {
-        email: lowerCaseEmail,
+        email: createUserDto.email,
         password: hashedPassword,
         name: createUserDto.name,
         address: createUserDto.address,
       },
     });
+    return user;
   }
 
   /** Finds user by id and returns the user without password.

@@ -48,7 +48,7 @@ export class CategoryService {
       where: { id },
       include: {
         products: {
-          select: { id: true, name: true, urlName: true, picture: true },
+          select: { id: true, name: true, picture: true },
           where: { name: { contains: productName, mode: 'insensitive' } },
           skip: productsToSkip,
           take: offset,
@@ -73,7 +73,7 @@ export class CategoryService {
       where: { name },
       include: {
         products: {
-          select: { id: true, name: true, urlName: true, picture: true },
+          select: { id: true, name: true, picture: true },
           where: { name: { contains: productName, mode: 'insensitive' } },
           skip: productsToSkip,
           take: offset,

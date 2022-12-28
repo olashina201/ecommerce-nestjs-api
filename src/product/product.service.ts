@@ -71,29 +71,19 @@ export class ProductService {
     });
   }
 
-  /** Find product by Url Name */
-  async findOneByUrlName(urlName: string): Promise<Product> {
-    return this.prisma.product.findUnique({
-      where: { urlName },
-      include: { categories: { select: { name: true } } },
-      rejectOnNotFound: true,
-    });
-  }
-
   /** Updates product information */
-  async update(
-    id: string,
-    updateProductDto: UpdateProductDto,
-  ): Promise<Product> {
-    if (updateProductDto.name) {
-      return this.updateProductAndUrlName(id, updateProductDto);
-    }
-
-    return this.prisma.product.update({
-      where: { id },
-      data: { ...updateProductDto },
-    });
-  }
+  // async update(
+  //   id: string,
+  //   updateProductDto: UpdateProductDto,
+  // ): Promise<Product> {
+  //   // if (updateProductDto.name) {
+  //   //   return this.updateProductAndUrlName(id, updateProductDto);
+  //   // }
+  //   return this.prisma.product.update({
+  //     where: { id },
+  //     data: { ...updateProductDto },
+  //   });
+  // }
 
   /** Removes product from database */
   async remove(id: string): Promise<void> {
@@ -104,15 +94,15 @@ export class ProductService {
    *
    * Used when the user updates the product name.
    */
-  private updateProductAndUrlName(
-    id: string,
-    updateProductDto: UpdateProductDto,
-  ): Promise<Product> {
-    return this.prisma.product.update({
-      where: { id },
-      data: { ...updateProductDto },
-    });
-  }
+  // private updateProductAndUrlName(
+  //   id: string,
+  //   updateProductDto: UpdateProductDto,
+  // ): Promise<Product> {
+  //   return this.prisma.product.update({
+  //     where: { id },
+  //     data: { ...updateProductDto },
+  //   });
+  // }
 
   /**
    * Format the categories IDs array into the prisma query way

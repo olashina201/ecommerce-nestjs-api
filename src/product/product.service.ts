@@ -108,7 +108,6 @@ export class ProductService {
    * Format the categories IDs array into the prisma query way
    */
   private connectCategoriesById(categories: string[]) {
-  private connectCategoriesById(categories: string[]) {
     let categoriesConnection = { connect: [] };
 
     if (categories) {

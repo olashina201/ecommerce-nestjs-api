@@ -18,9 +18,7 @@ export class ProductService {
   /** Creates a new product */
   async create(createProductDto: CreateProductDto): Promise<Product> {
     console.log(createProductDto);
-
     const categories = this.connectCategoriesById(createProductDto.categories);
-
     const product = await this.prisma.product.create({
       data: {
         ...createProductDto,

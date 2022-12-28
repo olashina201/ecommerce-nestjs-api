@@ -18,14 +18,12 @@ export class ProductService {
   /** Creates a new product */
   async create(createProductDto: CreateProductDto): Promise<Product> {
     console.log(createProductDto);
-    const urlName = this.formatUrlName(createProductDto.name);
 
     const categories = this.connectCategoriesById(createProductDto.categories);
 
     const product = await this.prisma.product.create({
       data: {
         ...createProductDto,
-        urlName,
         categories,
       },
       include: { categories: { select: { name: true } } },
@@ -102,23 +100,6 @@ export class ProductService {
     await this.prisma.product.delete({ where: { id } });
   }
 
-  /** Formats the name to generate an urlName.
-   *
-   * Makes the name lower case, remove leading and trailing white spaces,
-   * turn to single the multiple spaces between words and make
-   * single spaces hyphens
-   *
-   * @example " BraNd1    chAir   " becomes "brand1-chair"
-   */
-  private formatUrlName(name: string): string {
-    const lowerCaseUrlName = name.toLocaleLowerCase();
-    const trimmedUrlName = lowerCaseUrlName.trim();
-    const singleSpaceUrlName = trimmedUrlName.replace(/\s\s+/g, ' ');
-    const spaceToHyphenUrlName = singleSpaceUrlName.split(' ').join('-');
-
-    return spaceToHyphenUrlName;
-  }
-
   /** Formats UrlName and updates the product with the new one.
    *
    * Used when the user updates the product name.
@@ -127,11 +108,9 @@ export class ProductService {
     id: string,
     updateProductDto: UpdateProductDto,
   ): Promise<Product> {
-    const urlName = this.formatUrlName(updateProductDto.name);
-
     return this.prisma.product.update({
       where: { id },
-      data: { ...updateProductDto, urlName },
+      data: { ...updateProductDto },
     });
   }
 

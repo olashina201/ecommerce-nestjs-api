@@ -32,7 +32,6 @@ CREATE TABLE "UserTokens" (
 CREATE TABLE "Product" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "urlName" TEXT NOT NULL,
     "picture" TEXT,
     "basePrice" DECIMAL(65,30) NOT NULL,
     "discountPercentage" INTEGER NOT NULL DEFAULT 0,
@@ -79,9 +78,6 @@ CREATE UNIQUE INDEX "UserTokens_family_key" ON "UserTokens"("family");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Product_name_key" ON "Product"("name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Product_urlName_key" ON "Product"("urlName");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");

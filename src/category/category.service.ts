@@ -12,16 +12,11 @@ import { Category } from './entities/category.entity';
 @Injectable()
 export class CategoryService {
   constructor(private readonly prisma: PrismaService) {}
-
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
-    // const name = this.capitalizeOnlyFirstLetter(createCategoryDto.name);
-
     const category = await this.prisma.category.create({
       data: { ...createCategoryDto },
     });
-
     console.log(category);
-
     return category;
   }
 

@@ -55,7 +55,7 @@ export class ProductController {
   /** Find product by ID, only for admins */
   @ApiOperation({ summary: 'Admin gets product by ID' })
   @IsAdmin()
-  @Get('/id/:id')
+  @Get('/:id')
   findOneById(@Param('id') id: string): Promise<Product> {
     return this.productService.findOneById(id);
   }

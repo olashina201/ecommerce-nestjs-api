@@ -28,9 +28,7 @@ export const multerUploadConfig: MulterOptions = {
 
   fileFilter: (request, file, callback) => {
     const mimetype = validImageUploadTypesRegex.test(file.mimetype);
-    const extname = validImageUploadTypesRegex.test(
-      path.extname(file.originalname).toLowerCase(),
-    );
+    const extname = validImageUploadTypesRegex.test(file.originalname);
 
     if (mimetype && extname) {
       return callback(null, true);

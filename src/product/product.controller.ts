@@ -60,13 +60,6 @@ export class ProductController {
     return this.productService.findOneById(id);
   }
 
-  /**
-   * Admin uploads a new picture for the product.
-   * Needs to be type jpeg, jpg or png and maximum 3MB.
-   *
-   * Check <a href="https://alvaromrveiga.github.io/ecommerce-backend/miscellaneous/variables.html#multerUploadConfig">
-   * multerUploadConfig</a> file in the docs.
-   */
   @ApiOperation({ summary: 'Admin uploads a new product picture' })
   @IsAdmin()
   @FileUpload()

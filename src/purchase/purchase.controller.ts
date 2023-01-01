@@ -41,9 +41,6 @@ export class PurchaseController {
   }
 
   /** Returns all purchases with pagination, only for admins
-   *
-   * Default is starting on page 1 showing 10 results per page,
-   * matching by userId and/or productId and ordering by most recent date
    */
   @ApiOperation({ summary: 'Admin gets all purchases' })
   @IsAdmin()
@@ -55,9 +52,6 @@ export class PurchaseController {
   }
 
   /** Returns all users' purchases with pagination,
-   *
-   * Default is starting on page 1 showing 10 results per page,
-   * matching by productId and ordering by most recent date
    */
   @ApiOperation({ summary: 'User gets all their purchases' })
   @ApiBearerAuth()
